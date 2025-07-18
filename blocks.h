@@ -8,7 +8,6 @@ static const Block blocks[] = {
     {"   ",               "nmcli -t -f SIGNAL device wifi list | head -n1 | awk '{print $1\"%\"}'", 10,                   0},
     {"󰢝  ",                "cat /sys/class/power_supply/BAT0/capacity | awk '{print $1\"%\"}'",      30,                   0}, /* */
     {" \U0001F4C6 ",       "date '+%D (%a) %T'",                                                     1,                    0},
-    {"",                   "curl -s 'wttr.in?format=%m'",                                            120,                  0},
     {"",                   "~/software/suckless/dwmblocks/scripts/weather.sh",                       5,                    0},
 };
 
