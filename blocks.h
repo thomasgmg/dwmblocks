@@ -11,7 +11,7 @@ static const Block blocks[] = {
 
 	{" ", "TZ='Europe/Lisbon' date '+%D (%a) %T'",					1,		0},
 
-    {"", "curl -s 'wttr.in/Silveira?format=3' | tr -d '+' | tr -d ' ' | sed 's/☀️/  /' | sed 's/⛅️/  /'", 60, 0}
+    {"", "curl -s 'wttr.in/Silveira?format=3' | tr -d '+' | tr -d ' ' | sed 's/☀️/  /' | sed 's/⛅️/  /' | sed 's/🌦 / /'", 60, 0}
 };
 
 //sets delimiter between status commands. NULL character ('\0') means no delimiter.
