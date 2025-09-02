@@ -10,6 +10,7 @@ fi
 # Function to generate progress bar
 draw_progress_bar() {
     percentage="$1"
+
     # Ensure percentage is an integer between 0 and 100
     percentage=$(printf "%.0f" "$percentage")
     if [ "$percentage" -gt 100 ]; then
@@ -17,8 +18,10 @@ draw_progress_bar() {
     elif [ "$percentage" -lt 0 ]; then
         percentage=0
     fi
+
     # Calculate number of filled blocks (each block ≈ 10%)
     filled_blocks=$(expr "$percentage" / 10)
+
     # Create the progress bar
     bar="["
     i=0

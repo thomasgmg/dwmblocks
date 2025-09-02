@@ -1,5 +1,34 @@
 #!/bin/bash
 
+draw_progress_bar() {
+    percentage="$1"
+
+    # Ensure percentage is an integer between 0 and 100
+    percentage=$(printf "%.0f" "$percentage")
+    if [ "$percentage" -gt 100 ]; then
+        percentage=100
+    elif [ "$percentage" -lt 0 ]; then
+        percentage=0
+    fi
+
+    # Calculate number of filled blocks (each block ≈ 10%)
+    filled_blocks=$(expr "$percentage" / 10)
+
+    # Create the progress bar
+    bar="["
+    i=0
+    while [ "$i" -lt "$filled_blocks" ]; do
+        bar="$bar■"
+        i=$(expr "$i" + 1)
+    done
+    while [ "$i" -lt 10 ]; do
+        bar="$bar-"
+        i=$(expr "$i" + 1)
+    done
+    bar="$bar]"
+    echo "$bar"
+}
+
 # Read initial CPU stats from /proc/stat
 read -r cpu user nice system idle iowait irq softirq steal guest guest_nice </proc/stat
 
@@ -28,5 +57,6 @@ else
     cpu_percent=$((100 * active_diff / total_diff))
 fi
 
-# Output formatted percentage
-printf "%d%%\n" "$cpu_percent"
+# Generate progress bar and output formatted result
+progress_bar=$(draw_progress_bar "$cpu_percent")
+printf "%s %d%%\n" "$progress_bar" "$cpu_percent"
