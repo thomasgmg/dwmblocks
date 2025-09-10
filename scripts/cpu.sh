@@ -16,16 +16,28 @@ draw_progress_bar() {
 
     # Create the progress bar
     bar="["
+    # if [ "$percentage" -ge 10 ]; then
+    #     bar=""
+    # else
+    #     bar=""
+    # fi
     i=0
     while [ "$i" -lt "$filled_blocks" ]; do
         bar="$bar■"
+        # bar="$bar"
         i=$(expr "$i" + 1)
     done
     while [ "$i" -lt 10 ]; do
         bar="$bar-"
+        # bar="$bar"
         i=$(expr "$i" + 1)
     done
     bar="$bar]"
+    # if [ "$percentage" -eq 100 ]; then
+    #     bar="$bar"
+    # else
+    #     bar="$bar"
+    # fi
     echo "$bar"
 }
 
