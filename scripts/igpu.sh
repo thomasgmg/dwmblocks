@@ -45,7 +45,7 @@ if [ -n "$usage" ] && [ "$usage" != "N/A" ]; then
     # Convert usage to integer
     usage_int=$(printf "%.0f" "$usage")
     progress_bar=$(draw_progress_bar "$usage_int")
-    printf "%s %d%% \n" "$progress_bar" "$usage_int"
+    printf "%s %d%%\n" "$progress_bar" "$usage_int"
 else
     echo "GPU: N/A"
 fi
