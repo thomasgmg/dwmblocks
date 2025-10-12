@@ -5,6 +5,8 @@ static const Block blocks[] = {
 
     {"GPU: ",    "/home/thomas/software/dwmblocks/scripts/igpu.sh",                        5,                   0},
 
+    {" ",       "df -h / | awk 'NR==2 {printf \"%s/%s\", $3, $2}'",                       30,                  0},
+
     {"Mem: ",    "free -h | awk '/^Mem/ {printf \"%s/%s\", $3, $2}' | sed 's/i//g'",       30,                  0},
 
     {"󱊣 ",       "cat /sys/class/power_supply/BAT0/capacity | awk '{print $1\"%\"}'",      30,                  0},
