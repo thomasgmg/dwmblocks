@@ -11,7 +11,7 @@ static const Block blocks[] = {
 
     {"󱊣 ",       "cat /sys/class/power_supply/BAT0/capacity | awk '{print $1\"%\"}'",      30,                  0},
 
-    {" ",       "nmcli -t -f SIGNAL device wifi list | head -n1 | awk '{print $1\"%\"}'", 10,                  0},
+    {" ",       "nmcli -t -f SIGNAL device wifi list | head -n1 | awk '{print $1\"%\"}'", 10,                  0},
 
     {"",         "/home/thomas/software/dwmblocks/scripts/weather.sh",                     60,                  0},
 
