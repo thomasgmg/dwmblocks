@@ -9,7 +9,7 @@ static const Block blocks[] = {
 
     {"Mem: ",    "free -h | awk '/^Mem/ {printf \"%s/%s\", $3, $2}' | sed 's/i//g'",       30,                  0},
 
-    {"󱊣 ",       "cat /sys/class/power_supply/BAT0/capacity | awk '{print $1\"%\"}'",      30,                  0},
+    {"",         "/home/thomas/software/dwmblocks/scripts/battery.sh",                     30,                  0},
 
     {" ",       "nmcli -t -f SIGNAL device wifi list | head -n1 | awk '{print $1\"%\"}'", 10,                  0},
 
