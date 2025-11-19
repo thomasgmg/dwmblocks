@@ -1,7 +1,7 @@
 //Modify this file to change what commands output to your statusbar, and recompile using the make command.
 static const Block blocks[] = {
 	/*Icon*/   /*Command*/                                                               /*Update Interval*/  /*Update Signal*/
-    {" ",       "/home/thomas/software/dwmblocks/scripts/cpu.sh",                         5,                   0},
+    {"  ",      "/home/thomas/software/dwmblocks/scripts/cpu.sh",                         5,                   0},
 
     {"GPU ",     "/home/thomas/software/dwmblocks/scripts/igpu.sh",                        5,                   0},
 
@@ -24,4 +24,4 @@ static const Block blocks[] = {
 
 //sets delimiter between status commands. NULL character ('\0') means no delimiter.
 static char delim[] = " | ";
-static unsigned int delimLen = 5;
+static unsigned int delimLen = 3;
