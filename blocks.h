@@ -3,7 +3,7 @@ static const Block blocks[] = {
 	/*Icon*/   /*Command*/                                                               /*Update Interval*/  /*Update Signal*/
     {"  ",      "/home/thomas/software/dwmblocks/scripts/cpu.sh",                         5,                   0},
 
-    {"GPU ",     "/home/thomas/software/dwmblocks/scripts/igpu.sh",                        5,                   0},
+    {"GPU: ",     "/home/thomas/software/dwmblocks/scripts/igpu.sh",                       5,                   0},
 
     {" ",       "df -h / | awk 'NR==2 {printf \"%s/%s\", $3, $2}'",                       30,                  0},
 
@@ -14,6 +14,8 @@ static const Block blocks[] = {
     {" ",       "nmcli -t -f SIGNAL device wifi list | head -n1 | awk '{print $1\"%\"}'", 10,                  0},
 
     {"",         "/home/thomas/software/dwmblocks/scripts/weather.sh",                     60,                  0},
+
+    {"",         "/home/thomas/software/dwmblocks/scripts/sunhours.sh",                    120,                 0},
 
 	{" ",       "TZ='Europe/Lisbon' date '+%D (%a) %T'",                                  1,                   0},
 
