@@ -28,4 +28,4 @@ if [ -z "$sunrise" ] || [ -z "$sunset" ]; then
 fi
 
 # Output with your icons (you can add colors via ^c#hex^ if your dwmblocks supports pango/escape codes)
-echo " ${sunrise}  ${sunset}"
+echo " ${sunrise}   ${sunset}"
