@@ -3,7 +3,7 @@ static const Block blocks[] = {
 	/*Icon*/   /*Command*/                                                               /*Update Interval*/  /*Update Signal*/
     {"  ",    "/home/thomas/software/dwmblocks/scripts/cpu.sh",                         5,                   0},
 
-    {" ",     "/home/thomas/software/dwmblocks/scripts/igpu.sh",                        5,                   0},
+    {" ",     "/home/thomas/software/dwmblocks/scripts/igpu.sh",                        5,                   0},
 
     {" ",     "df -h / | awk 'NR==2 {printf \"%s/%s\", $3, $2}'",                       60,                  0},
 
@@ -13,7 +13,7 @@ static const Block blocks[] = {
 
     {" ",     "nmcli -t -f SIGNAL device wifi list | head -n1 | awk '{print $1\"%\"}'", 60,                  0},
 
-    {"",       "/home/thomas/software/dwmblocks/scripts/weather.sh",                     7200,                0},
+    {"",       "/home/thomas/software/dwmblocks/scripts/weather.sh",                     3600,                0},
 
     /* {"󱡛 ",  "/home/thomas/software/dwmblocks/scripts/wave.sh",                        7200,                0}, */
 
@@ -25,7 +25,7 @@ static const Block blocks[] = {
 
 	{"󰕶 ",     "/home/thomas/software/dwmblocks/scripts/weekday.sh ",                    14400,               0},
 
-	{"",       "/home/thomas/software/dwmblocks/scripts/bitcoin.sh",                     120,                 0},
+	{" ",     "/home/thomas/software/dwmblocks/scripts/bitcoin.sh",                     120,                 0},
 };
 
 //sets delimiter between status commands. NULL character ('\0') means no delimiter.
