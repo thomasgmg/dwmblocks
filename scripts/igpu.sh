@@ -1,5 +1,4 @@
 #!/bin/sh
-# File: ~/scripts/intel_gpu_status.sh
 
 # Check for dependencies
 if ! command -v jq >/dev/null || ! command -v intel_gpu_top >/dev/null || ! command -v sensors >/dev/null; then
