@@ -8,4 +8,4 @@ fi
 # Format integer part with European thousand separators (dots)
 formatted=$(printf "%.0f" "$price" | sed ':a;s/\B[0-9]\{3\}\>/.&/;ta')
 
-printf "%s€" "$formatted"
+printf "%s" "$formatted"
