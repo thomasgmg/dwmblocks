@@ -1,40 +1,63 @@
-#!/bin/sh
+#!/bin/bash
 
-data=$(curl -s --connect-timeout 8 "https://www.tide-forecast.com/locations/Peniche-Portugal/tides/latest")
+data=$(curl -s --connect-timeout 12 "https://www.tide-forecast.com/locations/Peniche-Portugal/tides/latest")
 
-if [ -z "$data" ]; then
-    echo "err 󱚵"
-    exit 1
+[ -z "$data" ] && { echo "err 󱚵"; exit 1; }
+
+tide_block=$(echo "$data" | sed -n '/predicted tide times.*today/,$p' | sed '/tomorrow/q' | head -n 100)
+
+[ -z "$tide_block" ] && { echo "tide err"; exit 1; }
+
+first_is_high=1
+if echo "$tide_block" | grep -qi "first high tide at"; then
+    first_is_high=1
+elif echo "$tide_block" | grep -qi "first low tide at"; then
+    first_is_high=0
 fi
 
-raw_times=$(echo "$data" | grep -A 10 -i 'predicted tide times.*today' | \
-            grep -oE '[0-9]?[0-9]:[0-9][0-9](am|pm|AM|PM)' | head -n 4)
+raw_times=$(echo "$tide_block" |
+    grep -oE '[0-9]{1,2}:[0-9]{2}[ap]m' | head -n 4)
 
-if [ -z "$raw_times" ] || [ "$(echo "$raw_times" | wc -l)" -lt 4 ]; then
-    echo "tide err"
-    exit 1
-fi
+[ "$(echo "$raw_times" | wc -l)" -ne 4 ] && { echo "times err"; exit 1; }
 
-clean_times=$(echo "$raw_times" | \
-    sed 's/^\([1-9]\):\([0-9][0-9]\)\([ap]m\)$/0\1:\2\3/i' | \
-    awk '{
-        time = $0;
-        match(time, /[0-9][0-9]:[0-9][0-9]/);
-        hm = substr(time, RSTART, RLENGTH);
-        period = tolower(substr(time, RSTART+RLENGTH));
-        split(hm, t, ":");
-        h = t[1] + 0;
-        m = t[2] + 0;
-        if (period ~ /pm/ && h < 12) h += 12;
-        if (period ~ /am/ && h == 12) h = 0;
-        printf "%02d:%02d ", h, m;
+# ───────────────────────────────────────────────
+# Better 12h → 24h conversion – more robust
+# ───────────────────────────────────────────────
+clean_times=$(echo "$raw_times" | awk '
+    function pad(n) { return sprintf("%02d", n) }
+    {
+        time = $0
+        if (match(time, /^[0-9]{1,2}:[0-9]{2}/)) {
+            hm = substr(time, RSTART, RLENGTH)
+            period = tolower(substr(time, RSTART + RLENGTH))
+            
+            split(hm, t, ":")
+            h = t[1] + 0
+            m = t[2] + 0
+            
+            if (period ~ /^pm$/ && h < 12) h += 12
+            if (period ~ /^am$/ && h == 12) h = 0
+            
+            print pad(h) ":" pad(m)
+        }
     }')
 
-if [ -z "$clean_times" ]; then
-    echo "tide err"
-    exit 1
+[ "$(echo "$clean_times" | wc -l)" -ne 4 ] && { echo "clean err"; exit 1; }
+
+# ───────────────────────────────────────────────
+# Output
+# ───────────────────────────────────────────────
+if [ "$first_is_high" = 1 ]; then
+    symbols="↑ ↓ ↑ ↓"
+else
+    symbols="↓ ↑ ↓ ↑"
 fi
 
-echo "$clean_times" | awk '{
-    printf "%s↓ %s↑ %s↓ %s↑\n", $1, $2, $3, $4
-}'
+times=$(echo "$clean_times" | tr '\n' ' ')
+set -- $times
+
+printf '%s%s %s%s %s%s %s%s\n' \
+    "$1" "$(echo "$symbols" | cut -d' ' -f1)" \
+    "$2" "$(echo "$symbols" | cut -d' ' -f2)" \
+    "$3" "$(echo "$symbols" | cut -d' ' -f3)" \
+    "$4" "$(echo "$symbols" | cut -d' ' -f4)"
