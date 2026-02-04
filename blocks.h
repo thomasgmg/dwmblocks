@@ -1,13 +1,13 @@
 //Modify this file to change what commands output to your statusbar, and recompile using the make command.
 static const Block blocks[] = {
 	/*Icon*/   /*Command*/                                                               /*Update Interval*/  /*Update Signal*/
-    {"  ",    "/home/thomas/software/dwmblocks/scripts/cpu.sh",                         5,                   0},
+    {"   ",   "/home/thomas/software/dwmblocks/scripts/cpu.sh",                         5,                   0},
 
-    {" ",     "/home/thomas/software/dwmblocks/scripts/igpu.sh",                        5,                   0},
+    {"  ",    "/home/thomas/software/dwmblocks/scripts/igpu.sh",                        5,                   0},
 
-    {" ",     "df -h / | awk 'NR==2 {printf \"%s/%s\", $3, $2}'",                       60,                  0},
+    {"  ",    "df -h / | awk 'NR==2 {printf \"%s/%s\", $3, $2}'",                       60,                  0},
 
-    {" ",     "free -h | awk '/^Mem/ {printf \"%s/%s\", $3, $2}' | sed 's/i//g'",       30,                  0},
+    {"   ",   "free -h | awk '/^Mem/ {printf \"%s/%s\", $3, $2}' | sed 's/i//g'",       30,                  0},
 
     {"",       "/home/thomas/software/dwmblocks/scripts/battery.sh",                     900,                 0},
 
@@ -15,19 +15,19 @@ static const Block blocks[] = {
 
     {"",       "/home/thomas/software/dwmblocks/scripts/weather.sh",                     3600,                0},
 
-    /* {"󱡛 ",  "/home/thomas/software/dwmblocks/scripts/wave.sh",                        7200,                0}, */
+    /* {"󱡛 ",  "/home/thomas/software/dwmblocks/scripts/wave.sh",                        3600,                0}, */
 
-    {"󰥛 ",     "/home/thomas/software/dwmblocks/scripts/tide.sh",                        14400,               0},
+    {"󰥛  ",    "/home/thomas/software/dwmblocks/scripts/tide.sh",                        3600,                0},
 
     {"",       "/home/thomas/software/dwmblocks/scripts/sunhours.sh",                    3600,                0},
 
-	{" ",     "TZ='Europe/Lisbon' date '+%D (%a) %R'",                                  30,                  0},
+	{" ",     "TZ='Europe/Lisbon' date '+%D  (%a)  %R'",                                30,                  0},
 
-	{"󰕶 ",     "/home/thomas/software/dwmblocks/scripts/weekday.sh ",                    14400,               0},
+	{"󰕶  ",    "/home/thomas/software/dwmblocks/scripts/weekday.sh ",                    3600,                0},
 
 	{" ",     "/home/thomas/software/dwmblocks/scripts/bitcoin.sh",                     120,                 0},
 };
 
 //sets delimiter between status commands. NULL character ('\0') means no delimiter.
-static char delim[] = " | ";
-static unsigned int delimLen = 3;
+static char delim[] = "  ";
+static unsigned int delimLen = 6;
