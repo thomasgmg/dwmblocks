@@ -13,7 +13,7 @@ static const Block blocks[] = {
 
     {" ",     "nmcli -t -f SIGNAL device wifi list | head -n1 | awk '{print $1\"%\"}'", 60,                  0},
 
-    {"",       "/home/thomas/software/dwmblocks/scripts/weather.sh",                     3600,                0},
+    {"",       "/home/thomas/software/dwmblocks/scripts/weather.sh",                     600,                 0},
 
     /* {"󱡛 ",  "/home/thomas/software/dwmblocks/scripts/wave.sh",                        3600,                0}, */
 
